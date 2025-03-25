@@ -41,7 +41,7 @@ def create_image_message(image_data, width, height, url_mapping):
 
     # Add any referenced images with their short URLs
     for short_url, data_url in url_mapping.items():
-        message.append({"type": "text", "text": f"Asset {short_url}"})
+        message.append({"type": "text", "text": f"Image asset href='{short_url}'"})
         # Ensure proper base64 formatting for referenced images
         data_b64 = image_to_base64(data_url)
         if not data_b64.startswith("data:"):
@@ -94,11 +94,11 @@ def test_create_image_message():
 
     # Check asset entries
     asset_texts = [
-        m["text"] for m in message if m["type"] == "text" and "Asset" in m["text"]
+        m["text"] for m in message if m["type"] == "text" and "Image asset" in m["text"]
     ]
     assert len(asset_texts) == 2
-    assert "Asset cdn://1.jpg" in asset_texts
-    assert "Asset cdn://2.jpg" in asset_texts
+    assert "Image asset href='cdn://1.jpg'" in asset_texts
+    assert "Image asset href='cdn://2.jpg'" in asset_texts
 
     # Check image URLs
     image_urls = [m["image_url"]["url"] for m in message if m["type"] == "image_url"]
@@ -131,7 +131,7 @@ def test_create_image_message_with_data_urls():
 
     # Check that assets are properly labeled
     text_entries = [
-        m["text"] for m in message if m["type"] == "text" and "Asset" in m["text"]
+        m["text"] for m in message if m["type"] == "text" and "Image asset" in m["text"]
     ]
     assert len(text_entries) == 3  # One for each data URL
-    assert all("cdn://" in text for text in text_entries)
+    assert all("href='cdn://" in text for text in text_entries)

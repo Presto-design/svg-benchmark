@@ -1,3 +1,3 @@
-model,record,bleu,structural,pixel
-claude,15.5,0.0,0.0,0.0
-gpt4,15.5,0.0,0.0,0.0
+model,count,bleu,structural,pixel
+claude,6,0.3803693255347795,0.7975583080743318,0.5147490421713572
+gpt4,6,0.0,0.0,0.0
