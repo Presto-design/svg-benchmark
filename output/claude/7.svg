@@ -1,0 +1,14 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background (white) -->
+  <rect width="280" height="280" fill="white"/>
+  
+  <!-- Left column of dots -->
+  <circle cx="100" cy="70" r="10" fill="black"/>
+  <circle cx="100" cy="140" r="10" fill="black"/>
+  <circle cx="100" cy="210" r="10" fill="black"/>
+  
+  <!-- Right column of dots -->
+  <circle cx="180" cy="70" r="10" fill="black"/>
+  <circle cx="180" cy="140" r="10" fill="black"/>
+  <circle cx="180" cy="210" r="10" fill="black"/>
+</svg>

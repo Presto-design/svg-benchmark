@@ -1,0 +1,7 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background rectangle -->
+  <rect width="280" height="280" fill="#a69393" />
+  
+  <!-- Diagonal line from top-left to middle-right -->
+  <line x1="0" y1="0" x2="140" y2="140" stroke="#8a7575" stroke-width="1" />
+</svg>

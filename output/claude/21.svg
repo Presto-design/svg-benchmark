@@ -1,0 +1,7 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left half - dark olive green -->
+  <rect x="0" y="0" width="140" height="280" fill="#3b3b0e" />
+  
+  <!-- Right half - brown -->
+  <rect x="140" y="0" width="140" height="280" fill="#8b6b4f" />
+</svg>

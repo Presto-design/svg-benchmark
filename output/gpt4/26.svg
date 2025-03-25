@@ -1,0 +1,19 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="280" height="280" fill="#5A2D5C" />
+
+  <!-- Letter P -->
+  <circle cx="70" cy="140" r="20" fill="none" stroke="#C0B7C1" stroke-width="3" />
+  <line x1="70" y1="140" x2="70" y2="170" stroke="#C0B7C1" stroke-width="3" />
+
+  <!-- Dots -->
+  <circle cx="190" cy="140" r="2" fill="#000000" />
+  <circle cx="200" cy="140" r="2" fill="#000000" />
+  <circle cx="210" cy="140" r="2" fill="#000000" />
+  <circle cx="190" cy="150" r="2" fill="#000000" />
+  <circle cx="200" cy="150" r="2" fill="#000000" />
+  <circle cx="210" cy="150" r="2" fill="#000000" />
+  <circle cx="190" cy="160" r="2" fill="#000000" />
+  <circle cx="200" cy="160" r="2" fill="#000000" />
+  <circle cx="210" cy="160" r="2" fill="#000000" />
+</svg>

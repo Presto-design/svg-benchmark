@@ -1,0 +1,23 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient background from red to teal -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d01a1a" />
+      <stop offset="100%" stop-color="#5fb8c0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rectangle -->
+  <rect width="100%" height="100%" fill="url(#bg-gradient)" />
+  
+  <!-- Main title text -->
+  <text x="20" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2a5c5e">
+    Ner Mesa Tagging?
+  </text>
+  
+  <!-- Subtitle text -->
+  <text x="20" y="65" font-family="Arial, sans-serif" font-size="12" fill="#333333">
+    <tspan>corner adorn shoji connect foursome</tspan>
+    <tspan x="220" y="65" text-anchor="end">excoriate!</tspan>
+  </text>
+</svg>

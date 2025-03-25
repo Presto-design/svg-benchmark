@@ -1,0 +1,24 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Maroon/burgundy gradient on the left -->
+  <linearGradient id="gradientLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#7a1a2c" />
+    <stop offset="100%" stop-color="#5a0f1f" />
+  </linearGradient>
+  
+  <!-- Green gradient in the middle -->
+  <linearGradient id="gradientMiddle" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#1e5b1e" />
+    <stop offset="100%" stop-color="#0d3d0d" />
+  </linearGradient>
+  
+  <!-- White/light gradient on the right -->
+  <linearGradient id="gradientRight" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#f0f0f0" />
+    <stop offset="100%" stop-color="#ffffff" />
+  </linearGradient>
+  
+  <!-- Background rectangles -->
+  <rect x="0" y="0" width="93" height="280" fill="url(#gradientLeft)" />
+  <rect x="93" y="0" width="93" height="280" fill="url(#gradientMiddle)" />
+  <rect x="186" y="0" width="94" height="280" fill="url(#gradientRight)" />
+</svg>

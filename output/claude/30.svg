@@ -1,0 +1,18 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background/Sky -->
+  <rect x="0" y="0" width="280" height="280" fill="#c3b1d0" />
+  
+  <!-- Horizon/Sand -->
+  <rect x="0" y="140" width="280" height="10" fill="#d89b54" />
+  
+  <!-- Ocean with gradient -->
+  <defs>
+    <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e7ac9" />
+      <stop offset="60%" stop-color="#0a4b8c" />
+      <stop offset="100%" stop-color="#000000" />
+    </linearGradient>
+  </defs>
+  
+  <rect x="0" y="150" width="280" height="130" fill="url(#oceanGradient)" />
+</svg>

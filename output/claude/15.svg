@@ -1,0 +1,9 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark green background -->
+  <rect width="280" height="280" fill="#0F4D2E" />
+  
+  <!-- Purple text -->
+  <text x="10" y="40" font-family="Arial, sans-serif" font-size="18" fill="#663399" font-weight="bold">
+    hustle for perfection
+  </text>
+</svg>

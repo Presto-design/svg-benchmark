@@ -1,0 +1,25 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient from brown to purple -->
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5D4126" /> <!-- Brown color at top left -->
+      <stop offset="100%" stop-color="#3A3399" /> <!-- Purple/indigo at bottom right -->
+    </linearGradient>
+    
+    <!-- Diagonal highlight/streak gradient -->
+    <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+      <stop offset="40%" stop-color="rgba(255,255,255,0.1)" />
+      <stop offset="50%" stop-color="rgba(255,255,255,0.9)" />
+      <stop offset="60%" stop-color="rgba(255,255,255,0.1)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rectangle -->
+  <rect width="280" height="280" fill="url(#backgroundGradient)" />
+  
+  <!-- Diagonal highlight/streak -->
+  <rect x="-50" y="50" width="380" height="80" fill="url(#highlightGradient)" 
+        transform="rotate(-30)" />
+</svg>

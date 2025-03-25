@@ -1,0 +1,6 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left rectangle -->
+  <rect width="140" height="280" fill="#3C3815" />
+  <!-- Right rectangle -->
+  <rect x="140" width="140" height="280" fill="#8A5C47" />
+</svg>

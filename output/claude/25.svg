@@ -1,0 +1,19 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Purple background -->
+  <rect width="280" height="280" fill="#8e2089" />
+  
+  <!-- Small text at top -->
+  <text x="95" y="20" font-family="Arial, sans-serif" font-size="10" fill="#2dd8d8">
+    echume patton dawdia gerhardt duffle ritty
+  </text>
+  
+  <!-- Main text -->
+  <text x="20" y="50" font-family="Arial, sans-serif" font-size="18" fill="#2dd8d8">
+    gonad problematic notate
+  </text>
+  
+  <!-- Last word on next line -->
+  <text x="20" y="75" font-family="Arial, sans-serif" font-size="18" fill="#2dd8d8">
+    wig
+  </text>
+</svg>

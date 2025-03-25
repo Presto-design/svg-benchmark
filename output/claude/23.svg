@@ -1,0 +1,19 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Purple background -->
+  <rect width="280" height="280" fill="#b088ff" />
+  
+  <!-- Placeholder for the misty landscape image -->
+  <!-- In a real implementation, you would need to embed the actual image data or link to it -->
+  <rect x="140" y="140" width="140" height="140" fill="#1a2533" />
+  
+  <!-- Fog/mist layers - simplified representation -->
+  <path d="M140,200 Q190,170 220,190 Q250,210 280,200 L280,280 L140,280 Z" fill="#e6e6e6" opacity="0.8" />
+  <path d="M140,220 Q170,200 210,220 Q240,240 280,230 L280,280 L140,280 Z" fill="#ffffff" opacity="0.7" />
+  <path d="M180,240 Q210,230 240,245 Q260,255 280,250 L280,280 L180,280 Z" fill="#f2f2f2" opacity="0.6" />
+  
+  <!-- Tree silhouettes -->
+  <path d="M160,260 L160,240 Q163,235 166,240 L166,260 Z" fill="#0a0f14" />
+  <path d="M190,270 L190,230 Q195,220 200,230 L200,270 Z" fill="#0a0f14" />
+  <path d="M230,265 L230,235 Q235,225 240,235 L240,265 Z" fill="#0a0f14" />
+  <path d="M260,260 L260,240 Q265,230 270,240 L270,260 Z" fill="#0a0f14" />
+</svg>

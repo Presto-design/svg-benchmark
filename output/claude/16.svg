@@ -1,0 +1,13 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark green background -->
+  <rect width="280" height="280" fill="#2d4c3e" />
+  
+  <!-- Text elements -->
+  <text x="30" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">
+    Apocrypha Oct Allergy
+  </text>
+  
+  <text x="30" y="55" font-family="Arial, sans-serif" font-size="14" fill="white">
+    Faithful Camoga Dent.
+  </text>
+</svg>

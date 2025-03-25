@@ -1,0 +1,19 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="280" height="280" fill="#8A007F" />
+  
+  <!-- Small text at the top -->
+  <text x="140" y="20" font-family="Arial" font-size="10" fill="#D1C4E9" text-anchor="middle">
+    exhume pittston dawdle gerhardt duffel nitty.
+  </text>
+  
+  <!-- Larger text -->
+  <text x="140" y="80" font-family="Arial" font-size="24" fill="#00BFFF" text-anchor="middle">
+    gonad problematic notate
+  </text>
+  
+  <!-- Smaller text below -->
+  <text x="140" y="110" font-family="Arial" font-size="20" fill="#00BFFF" text-anchor="middle">
+    wig
+  </text>
+</svg>

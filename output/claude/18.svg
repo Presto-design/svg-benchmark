@@ -1,0 +1,26 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c0b0c8" />
+      <stop offset="100%" stop-color="#ff00aa" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rectangle -->
+  <rect width="280" height="280" fill="url(#bg-gradient)" />
+  
+  <!-- Overlapping squares in bottom right -->
+  <g transform="translate(210, 210)">
+    <rect x="-15" y="-15" width="20" height="20" fill="none" stroke="black" stroke-width="2" />
+    <rect x="-5" y="-5" width="20" height="20" fill="none" stroke="black" stroke-width="2" />
+  </g>
+  
+  <!-- Circular element with lines in bottom right corner -->
+  <g transform="translate(240, 240)">
+    <circle cx="0" cy="0" r="15" fill="none" stroke="black" stroke-width="2" />
+    <line x1="-10" y1="-5" x2="10" y2="-5" stroke="black" stroke-width="2" />
+    <line x1="-10" y1="0" x2="10" y2="0" stroke="black" stroke-width="2" />
+    <line x1="-10" y1="5" x2="10" y2="5" stroke="black" stroke-width="2" />
+  </g>
+</svg>

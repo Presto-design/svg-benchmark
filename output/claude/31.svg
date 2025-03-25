@@ -1,0 +1,11 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Light blue/gray circle with thin border -->
+  <circle 
+    cx="140" 
+    cy="140" 
+    r="135" 
+    fill="#c5d1d7" 
+    stroke="#a0a0a0" 
+    stroke-width="1" 
+  />
+</svg>

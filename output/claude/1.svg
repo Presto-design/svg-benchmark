@@ -1,0 +1,17 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff3300" /> <!-- Red-orange at top -->
+      <stop offset="15%" stop-color="#ff0066" /> <!-- Pink-red -->
+      <stop offset="30%" stop-color="#9933cc" /> <!-- Purple -->
+      <stop offset="45%" stop-color="#33cc99" /> <!-- Teal -->
+      <stop offset="60%" stop-color="#ffffff" /> <!-- White -->
+      <stop offset="75%" stop-color="#cccccc" /> <!-- Light gray -->
+      <stop offset="100%" stop-color="#666666" /> <!-- Dark gray at bottom -->
+    </linearGradient>
+  </defs>
+  
+  <!-- Main rectangle with gradient fill -->
+  <rect x="0" y="0" width="280" height="280" fill="url(#backgroundGradient)" />
+</svg>

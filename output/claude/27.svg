@@ -1,0 +1,21 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Light sage green background -->
+  <rect width="100%" height="100%" fill="#c5cec5" />
+  
+  <!-- Text elements -->
+  <text x="50%" y="40" font-family="Arial, sans-serif" font-size="16" fill="#4aacb5" text-anchor="middle" font-style="italic">
+    'Intricacy incredulous.'
+  </text>
+  
+  <text x="50%" y="80" font-family="Arial, sans-serif" font-size="20" fill="#4aacb5" text-anchor="middle" font-weight="bold">
+    ANTAGONISM
+  </text>
+  
+  <text x="50%" y="110" font-family="Arial, sans-serif" font-size="20" fill="#4aacb5" text-anchor="middle" font-weight="bold">
+    LIZARD REFERENT
+  </text>
+  
+  <text x="50%" y="140" font-family="Arial, sans-serif" font-size="20" fill="#4aacb5" text-anchor="middle" font-weight="bold">
+    CARRYOVER?
+  </text>
+</svg>

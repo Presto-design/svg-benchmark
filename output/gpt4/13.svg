@@ -1,0 +1,12 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgb(255,223,186);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(219,112,147);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="280" height="280" fill="url(#grad1)" />
+  <text x="20" y="100" font-family="Georgia" font-size="24" fill="teal">
+    Of Emcee Rank Aboar
+  </text>
+</svg>

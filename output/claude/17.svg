@@ -1,0 +1,13 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background -->
+  <rect width="100%" height="100%" fill="#1a1e24"/>
+  
+  <!-- Pink/purple text with outline effect -->
+  <text x="140" y="70" font-family="serif" font-size="24" text-anchor="middle" fill="#f8c8e0" stroke="#8a4a7a" stroke-width="0.5">calculus congruent</text>
+  <text x="140" y="100" font-family="serif" font-size="24" text-anchor="middle" fill="#f8c8e0" stroke="#8a4a7a" stroke-width="0.5">truckload</text>
+  <text x="140" y="130" font-family="serif" font-size="24" text-anchor="middle" fill="#f8c8e0" stroke="#8a4a7a" stroke-width="0.5">Albuquerque</text>
+  <text x="140" y="160" font-family="serif" font-size="24" text-anchor="middle" fill="#f8c8e0" stroke="#8a4a7a" stroke-width="0.5">approximant.</text>
+  
+  <!-- Blue text at the bottom -->
+  <text x="140" y="200" font-family="serif" font-size="24" text-anchor="middle" fill="#3a7ad9">Debonair Shape?</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mint green background -->
+  <rect width="280" height="280" fill="#b5e6c9" />
+  
+  <!-- Circular frame -->
+  <circle cx="100" cy="100" r="40" fill="none" stroke="#4ca67a" stroke-width="1" />
+  
+  <!-- Gradient background for the circle content -->
+  <defs>
+    <radialGradient id="circleGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e0e0e0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Circle content background -->
+  <circle cx="100" cy="100" r="39" fill="url(#circleGradient)" />
+  
+  <!-- Silhouette of person carrying someone at beach -->
+  <path d="M85,110 C85,110 90,95 100,95 C110,95 115,100 115,100 L115,115 C115,115 105,105 100,105 C95,105 85,110 85,110 Z" fill="black" />
+  
+  <!-- Beach horizon line -->
+  <line x1="65" y1="110" x2="135" y2="110" stroke="#f9d195" stroke-width="1" />
+  
+  <!-- Sunset/sky gradient -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#87ceeb" />
+      <stop offset="100%" stop-color="#ffa07a" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky background in circle -->
+  <path d="M61,110 A39,39 0 0,1 139,110 Z" fill="url(#skyGradient)" />
+  
+  <!-- Sand color for beach -->
+  <path d="M61,110 A39,39 0 0,0 139,110 L139,139 A39,39 0 0,1 61,139 Z" fill="#f9d195" />
+</svg>
