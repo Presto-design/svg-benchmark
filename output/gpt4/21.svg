@@ -1,0 +1,6 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left rectangle -->
+  <rect x="0" y="0" width="200" height="400" fill="#3d3915" />
+  <!-- Right rectangle -->
+  <rect x="200" y="0" width="200" height="400" fill="#8b5a44" />
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  
+  <!-- Purple background -->
+  <rect width="400" height="400" fill="#d8bfd8"/>
+  
+  <!-- Fog/mist effect using a white to transparent gradient -->
+  <linearGradient id="fog-gradient" x1="0%" y1="70%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="white" stop-opacity="0.8"/>
+    <stop offset="100%" stop-color="white" stop-opacity="0"/>
+  </linearGradient>
+  
+  <rect width="400" height="400" fill="url(#fog-gradient)"/>
+
+</svg>

@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "svg-benchmark"
+version = "0.1.0"
+description = ""
+authors = ["David Mack <david@prestodesign.ai>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+datasets = "^3.4.1"
+langchain = "^0.3.21"
+cairosvg = "^2.7.1"
+evaluate = "^0.4.3"
+scikit-image = "^0.25.2"
+matplotlib = "^3.10.1"
+pandas = "^2.2.3"
+openai = "^1.68.2"
+anthropic = "^0.49.0"
+pillow = "^11.1.0"
+langchain-community = "^0.3.20"
+langchain-openai = "^0.3.10"
+python-dotenv = "^1.0.1"
+tqdm = "^4.67.1"
+langchain-anthropic = "^0.3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

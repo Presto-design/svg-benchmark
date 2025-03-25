@@ -1,0 +1,7 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="66.67" fill="red" />
+  <rect y="66.67" width="400" height="66.67" fill="purple" />
+  <rect y="133.34" width="400" height="66.67" fill="green" />
+  <rect y="200.01" width="400" height="66.67" fill="white" />
+  <rect y="266.68" width="400" height="133.32" fill="gray" />
+</svg>
