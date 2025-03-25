@@ -1,12 +1,27 @@
 import os
 from dotenv import load_dotenv
-from PIL import Image
+from PIL import Image, ImageDraw
 import base64
 import io
 import torch
 from langchain.schema import HumanMessage
 from .presto_model import PrestoModel
 from huggingface_hub import login
+
+
+def create_test_image() -> Image.Image:
+    """Create a simple test image"""
+    print("Creating test image...")
+    # Create a new image with a white background
+    image = Image.new("RGB", (280, 280), "white")
+    draw = ImageDraw.Draw(image)
+
+    # Draw a simple shape
+    draw.rectangle([100, 100, 180, 180], outline="black", width=2)
+    draw.line([100, 100, 180, 180], fill="black", width=2)
+    draw.line([180, 100, 100, 180], fill="black", width=2)
+
+    return image
 
 
 def main():
@@ -32,8 +47,7 @@ def main():
     )
 
     # Create a simple test image
-    print("Creating test image...")
-    img = Image.new("RGB", (400, 400), color="blue")
+    img = create_test_image()
     img_byte_arr = io.BytesIO()
     img.save(img_byte_arr, format="PNG")
     img_byte_arr = img_byte_arr.getvalue()
@@ -45,7 +59,7 @@ def main():
             content=[
                 {
                     "type": "text",
-                    "text": "Write SVG code to recreate this 400 x 400 px design",
+                    "text": "Write SVG code to recreate this 280 x 280 px design",
                 },
                 {
                     "type": "image_url",
