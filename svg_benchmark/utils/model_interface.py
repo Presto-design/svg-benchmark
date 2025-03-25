@@ -2,6 +2,8 @@ import base64
 from io import BytesIO
 from PIL import Image
 
+from svg_benchmark.utils.svg_processing import extract_data_urls
+
 
 def image_to_base64(image):
     """Convert a PIL Image to base64 string"""
@@ -103,3 +105,33 @@ def test_create_image_message():
     assert len(image_urls) == 3  # Main image + 2 asset images
     assert "data:image/png;base64,base64ABC" in image_urls
     assert "data:image/jpeg;base64,DEF" in image_urls
+
+
+def test_create_image_message_with_data_urls():
+    """Test that SVGs with data URLs are properly included as assets"""
+    # Create a mock SVG with multiple data URLs
+    svg_with_urls = """<svg>
+        <image href="data:image/png;base64,ABC123"/>
+        <image href="data:image/jpeg;base64,DEF456"/>
+        <image href="data:image/png;base64,GHI789"/>
+    </svg>"""
+
+    # Extract URLs and create message
+    url_mapping = extract_data_urls(svg_with_urls)
+    message = create_image_message("main_image_data", 100, 100, url_mapping)
+
+    # Check that all data URLs are included
+    image_urls = [m["image_url"]["url"] for m in message if m["type"] == "image_url"]
+    assert len(image_urls) == 4  # Main image + 3 assets
+
+    # Check that each data URL from the SVG is present
+    assert any("ABC123" in url for url in image_urls)
+    assert any("DEF456" in url for url in image_urls)
+    assert any("GHI789" in url for url in image_urls)
+
+    # Check that assets are properly labeled
+    text_entries = [
+        m["text"] for m in message if m["type"] == "text" and "Asset" in m["text"]
+    ]
+    assert len(text_entries) == 3  # One for each data URL
+    assert all("cdn://" in text for text in text_entries)
