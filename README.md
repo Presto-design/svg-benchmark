@@ -23,7 +23,7 @@ The [benchmark dataset](https://huggingface.co/datasets/Presto-Design/svg_basic_
 - Icons and strokes
 - Advanced SVG features
 
-For more insights, read our article: ["Why LLMs are Bad at Creating SVGs and Graphic Design - And How to Make Them Good"](https://prestodesign.ai/)
+For more insights, read our article: ["Why LLMs are Bad at Creating SVGs and Graphic Design - And How to Make Them Good"](https://davidmack.medium.com/why-graphic-design-is-hard-for-large-language-models-64ee67c4309c)
 
 ## Contributing
 
