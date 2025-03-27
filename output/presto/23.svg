@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+	<rect x="0" y="0" width="100%" height="100%" fill="#05091f" />
+	<image x="0" y="0" width="100%" height="100%" href="placeholder" preserveAspectRatio="xMidYMid slice" opacity="0.6" alt="aerial photography of mountain covered with clouds" mean-pixel="rgb(179,184,186)" />
+	<defs>
+		<mask id="image-mask-7444">
+			<rect x="0" y="0" width="612.9" height="407.6" rx="0" ry="0" fill="white" />
+		</mask>
+	</defs>
+	<image x="466.4" y="693.9" width="612.9" height="407.6" href="placeholder" mask="url(#image-mask-7444)" alt="green trees on mountain during daytime" mean-pixel="rgb(148,150,150)" />
+</svg>

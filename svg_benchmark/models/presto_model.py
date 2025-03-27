@@ -32,7 +32,6 @@ def download_image(url: str) -> Image.Image:
 class PrestoModel:
     def __init__(
         self,
-        adapter_path: str = None,
         device: str = None,
         use_flash_attention: bool = False,
         min_pixels: int = None,
@@ -56,7 +55,7 @@ class PrestoModel:
             torch_dtype = torch.float32
 
         # Load base model
-        base_model_id = "Qwen/Qwen2.5-VL-3B-Instruct"
+        base_model_id = "Qwen/Qwen2.5-VL-7B-Instruct"
         print(f"Loading base model from {base_model_id}...")
 
         # Load model with appropriate configuration
@@ -70,6 +69,7 @@ class PrestoModel:
         )
 
         # Load adapter if specified
+        adapter_path = "Presto-Design/llm_adapter_vectorizer_qwen7b"
         if adapter_path:
             print(f"Loading adapter from {adapter_path}...")
             self.model = PeftModel.from_pretrained(

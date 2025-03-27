@@ -3,21 +3,21 @@
   <defs>
     <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#87CEFA" /> <!-- Light blue at top -->
-      <stop offset="30%" stop-color="#E6A8D7" /> <!-- Pink in middle -->
-      <stop offset="60%" stop-color="#B0E0E6" /> <!-- Light blue again -->
-      <stop offset="100%" stop-color="#ADD8E6" /> <!-- Slightly darker blue at horizon -->
+      <stop offset="25%" stop-color="#E6A8D7" /> <!-- Pink in middle upper area -->
+      <stop offset="50%" stop-color="#B0E0E6" /> <!-- Light blue in middle -->
+      <stop offset="65%" stop-color="#ADD8E6" /> <!-- Lighter blue toward horizon -->
     </linearGradient>
     
-    <!-- Ground color -->
+    <!-- Ground/earth color -->
     <linearGradient id="groundGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#8B5A2B" /> <!-- Lighter brown at top -->
-      <stop offset="100%" stop-color="#704214" /> <!-- Darker brown at bottom -->
+      <stop offset="0%" stop-color="#8B5A2B" /> <!-- Brown at top of ground -->
+      <stop offset="100%" stop-color="#7B4A1B" /> <!-- Slightly darker brown at bottom -->
     </linearGradient>
   </defs>
   
-  <!-- Sky rectangle -->
+  <!-- Sky background -->
   <rect x="0" y="0" width="280" height="140" fill="url(#skyGradient)" />
   
-  <!-- Ground rectangle -->
+  <!-- Ground/earth -->
   <rect x="0" y="140" width="280" height="140" fill="url(#groundGradient)" />
 </svg>

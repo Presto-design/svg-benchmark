@@ -54,35 +54,142 @@ Then edit `.env` and add your API keys:
 
 ## Running the Benchmark
 
-The benchmark supports multiple models that can be enabled via command-line flags:
+The benchmark is split into two parts: generation and scoring.
+
+### Generation
+
+The generation script runs the selected models and generates SVGs:
 
 ```bash
 # Run with Claude only
-./run_benchmark.sh --use-claude
+poetry run python -m svg_benchmark.generate --use-claude
 
 # Run with GPT-4 only
-./run_benchmark.sh --use-gpt4
+poetry run python -m svg_benchmark.generate --use-gpt4
 
 # Run with Presto model
-./run_benchmark.sh --presto-model /path/to/model
+poetry run python -m svg_benchmark.generate --use-presto
 
 # Run with multiple models
-./run_benchmark.sh --use-claude --use-gpt4 --presto-model /path/to/model
+poetry run python -m svg_benchmark.generate --use-claude --use-gpt4 --use-presto
 
 # Additional options:
 --parallel N     # Number of parallel processes per model (default: 8)
 --dry-run       # Print inputs without running models
 ```
 
-The script will:
+The generation script will:
 1. Load the first 32 examples from the Presto-Design SVG benchmark dataset (6 examples for dry runs)
 2. Test the selected models on SVG generation using parallel processing
-3. Generate output files in the `output/` directory:
-   - `raw.csv`: Raw model responses
-   - `scores.csv`: Detailed scores for each example
-   - `mean_scores.csv`: Average scores per model
-   - `comparison.svg`: Visual comparison of model performance
-   - Model-specific directories containing generated SVGs and PNGs
+3. Generate SVGs and PNGs in model-specific directories under `output/`
+4. Save raw model responses to `output/raw.csv`
+
+### Scoring
+
+After generation is complete, run the scoring script to evaluate the results:
+
+```bash
+# Score all runs in raw.csv
+poetry run python -m svg_benchmark.score
+
+# Score a specific run
+poetry run python -m svg_benchmark.score --run-time "2024-03-26_21-45-30"
+```
+
+The scoring script will:
+1. Read the generated SVGs and PNGs
+2. Calculate BLEU, structural similarity, and pixel-wise similarity scores
+3. Save detailed scores to `output/scores.csv`
+4. Save mean scores per model to `output/mean_scores.csv`
+
+## Understanding the Scoring Metrics
+
+The benchmark evaluates model performance using three complementary metrics that capture different aspects of SVG generation quality:
+
+### BLEU Score (Code Similarity)
+
+The BLEU (Bilingual Evaluation Understudy) score measures the similarity between the generated SVG code and the reference SVG code. Originally designed for machine translation, BLEU is particularly effective at evaluating code generation because:
+
+- It captures n-gram matches, ensuring both local (attribute values, coordinates) and structural (element nesting, attribute order) similarities
+- It penalizes both missing and extra elements
+- It's length-independent, allowing comparison of SVGs with different levels of complexity
+
+**Interpretation**: Scores range from 0 to 1, where:
+- 0.7-1.0: Near-perfect code reproduction
+- 0.4-0.7: Good structural match with minor variations
+- 0.0-0.4: Significant code differences
+
+**Limitations**:
+- Sensitive to code formatting and attribute order
+- Doesn't account for equivalent but differently structured SVGs
+- May miss semantic equivalence (e.g., `<circle>` vs equivalent `<path>`)
+
+### Structural Similarity (SSIM)
+
+The Structural Similarity Index (SSIM) evaluates the perceptual similarity between the rendered SVG images by analyzing:
+
+- Luminance: Changes in brightness
+- Contrast: Range of light and dark
+- Structure: Patterns and spatial relationships
+
+**Interpretation**: Scores range from -1 to 1, where:
+- 0.95-1.00: Visually identical
+- 0.80-0.95: Minor visual differences
+- Below 0.80: Noticeable visual differences
+
+**Strengths**:
+- Matches human perception of image quality
+- Robust to minor pixel-level variations
+- Captures overall layout and composition
+
+### Pixel-wise Similarity
+
+This metric computes the direct pixel-by-pixel comparison between the rendered images, providing a strict measure of exact reproduction:
+
+**Interpretation**: Scores range from 0 to 1, where:
+- 1.0: Perfect pixel match
+- 0.9-1.0: Nearly identical with minimal differences
+- Below 0.9: Significant pixel-level differences
+
+**Use cases**:
+- Detecting small rendering artifacts
+- Verifying exact color reproduction
+- Identifying positioning errors
+
+### How the Metrics Complement Each Other
+
+Each metric captures different aspects of SVG generation quality:
+
+1. **BLEU Score** → Code Quality
+   - Ensures maintainable and semantically correct SVG code
+   - Important for human readability and editability
+   - Catches structural issues in the SVG markup
+
+2. **SSIM** → Perceptual Quality
+   - Matches how humans perceive visual differences
+   - Less sensitive to minor pixel-level variations
+   - Best for evaluating overall visual accuracy
+
+3. **Pixel Similarity** → Technical Accuracy
+   - Provides strict technical validation
+   - Catches subtle rendering issues
+   - Important for exact reproduction requirements
+
+**Example Scenarios**:
+
+1. **High BLEU, Low SSIM/Pixel**: 
+   - Code is structurally correct but visual output differs
+   - Possible causes: Wrong colors, coordinates, or transformations
+
+2. **Low BLEU, High SSIM/Pixel**:
+   - Different code produces visually similar results
+   - Possible causes: Using different SVG elements to achieve same effect
+
+3. **High SSIM, Low Pixel**:
+   - Visually similar but technically different
+   - Possible causes: Anti-aliasing differences, minor positioning errors
+
+By considering all three metrics together, we get a comprehensive view of a model's SVG generation capabilities across code quality, visual accuracy, and technical precision.
 
 ## Metrics
 
@@ -95,21 +202,24 @@ The benchmark evaluates models on three metrics:
 
 ```
 output/
-├── raw.csv
-├── scores.csv
-├── mean_scores.csv
-├── comparison.svg
-├── claude/          # Only present if Claude is used
+├── raw.csv             # Raw model responses with timestamps
+├── scores.csv          # Detailed scores for each example
+├── mean_scores.csv     # Average scores per model per run
+├── comparison.svg      # Visual comparison of model performance
+├── claude/             # Only present if Claude is used
 │   ├── 0.svg
 │   ├── 0.png
+│   ├── 0_target.png
 │   └── ...
-├── gpt4/           # Only present if GPT-4 is used
+├── gpt4/              # Only present if GPT-4 is used
 │   ├── 0.svg
 │   ├── 0.png
+│   ├── 0_target.png
 │   └── ...
-└── presto/         # Only present if Presto is used
+└── presto/            # Only present if Presto is used
     ├── 0.svg
     ├── 0.png
+    ├── 0_target.png
     └── ...
 ```
 

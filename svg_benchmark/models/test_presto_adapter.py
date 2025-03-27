@@ -41,7 +41,6 @@ def main():
 
     print("Initializing Presto model with adapter...")
     model = PrestoModel(
-        adapter_path="Presto-Design/qwen2.5-vl-3b-poster-2m-variety-adapter-sft-resume1",
         use_flash_attention=False,  # Use standard attention implementation
         device="mps",  # Use MPS device
     )

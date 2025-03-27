@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+	<rect x="0" y="0" width="100%" height="100%" fill="#040506" />
+	<image x="0" y="0" width="100%" height="100%" href="placeholder" preserveAspectRatio="xMidYMid slice" opacity="0.6" alt="silhouette of man and woman standing on seashore during sunset" mean-pixel="rgb(217,211,201)" />
+	<circle cx="653.9" cy="276.1" r="139" fill="#040506" stroke="#8fbf7e" stroke-width="3" />
+	<defs>
+		<mask id="content-mask-909882">
+			<circle cx="136" cy="204.5" r="136" fill="white" />
+		</mask>
+	</defs>
+	<image x="517.9" y="71.6" width="272" height="409" href="placeholder" alt="man in black shirt and pants standing on seashore during daytime" mask="url(#content-mask-909882)" />
+</svg>

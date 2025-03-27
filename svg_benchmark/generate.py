@@ -2,19 +2,18 @@ import copy
 import os
 import csv
 from pathlib import Path
-import pandas as pd
-from datasets import load_dataset
-from langchain_anthropic import ChatAnthropic
-from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage
-from evaluate import load
-import argparse
 import multiprocessing
 from multiprocessing import Pool
 from typing import Optional, Dict, Any, Tuple
 from tqdm import tqdm
 import sys
 import json
+from datetime import datetime
+from datasets import load_dataset
+from langchain_anthropic import ChatAnthropic
+from langchain_openai import ChatOpenAI
+from langchain.schema import HumanMessage
+import argparse
 
 from .models.presto_model import PrestoModel
 from .utils import (
@@ -22,7 +21,6 @@ from .utils import (
     replace_urls,
     extract_svg,
     render_svg,
-    compute_pixel_similarity,
     create_image_message,
 )
 
@@ -44,14 +42,18 @@ def check_api_keys():
 
 def process_example(
     args_tuple: Tuple[
-        Dict[str, Any], str, Dict[str, Any], int, argparse.Namespace, Any
+        Dict[str, Any], str, Dict[str, Any], int, argparse.Namespace, Optional[Any]
     ],
 ) -> Dict[str, Any]:
     """Process a single example using multiprocessing"""
-    example, model_id, model_config, idx, args, bleu = args_tuple
+    example, model_id, model_config, idx, args, model_instance = args_tuple
     try:
-        # Create model instance within the process
-        model = model_config["class"](**model_config["params"])
+        # Create or reuse model instance
+        model = (
+            model_instance
+            if model_instance
+            else model_config["class"](**model_config["params"])
+        )
 
         # Validate example structure
         if not isinstance(example, dict):
@@ -104,9 +106,6 @@ def process_example(
             return {
                 "record": idx,
                 "model": model_id,
-                "bleu": 0.0,
-                "structural": 0.0,
-                "pixel": 0.0,
                 "raw_response": response_text,
             }
 
@@ -123,31 +122,19 @@ def process_example(
             return {
                 "record": idx,
                 "model": model_id,
-                "bleu": 0.0,
-                "structural": 0.0,
-                "pixel": 0.0,
                 "raw_response": response_text,
             }
 
         # Save target SVG and render to PNG
         target_svg = example["completion"]
+        target_svg_path = f"output/{model_id}/{idx}_target.svg"
+        with open(target_svg_path, "w") as f:
+            f.write(target_svg)
         render_svg(target_svg, target_png_path)
-
-        # Compute BLEU score using completion as reference
-        bleu_score = bleu.compute(
-            predictions=[svg_text],
-            references=[example["completion"]],
-        )["bleu"]
-
-        # Compute image similarities
-        structural_sim, pixel_sim = compute_pixel_similarity(png_path, target_png_path)
 
         return {
             "record": idx,
             "model": model_id,
-            "bleu": bleu_score,
-            "structural": structural_sim,
-            "pixel": pixel_sim,
             "raw_response": response_text,
         }
 
@@ -156,9 +143,6 @@ def process_example(
         return {
             "record": idx,
             "model": model_id,
-            "bleu": 0.0,
-            "structural": 0.0,
-            "pixel": 0.0,
             "raw_response": str(e),
         }
 
@@ -168,7 +152,6 @@ def process_model(
     config: dict,
     eval_data: list,
     args: argparse.Namespace,
-    bleu: Any,
     progress_bar: Optional[tqdm] = None,
 ) -> list:
     """Process all examples for a single model in parallel using multiprocessing"""
@@ -191,30 +174,46 @@ def process_model(
         disable=args.dry_run,
     )
 
-    # Process examples in parallel batches
-    with Pool(processes=args.parallel) as pool:
-        for i in range(0, len(eval_data), args.parallel):
-            batch = eval_data[i : i + args.parallel]
-            if args.dry_run:
-                print(f"\nBatch {i//args.parallel + 1}:")
-                print(f"Batch size: {len(batch)}")
-                print(f"First batch item type: {type(batch[0])}")
+    # Process examples - serially for Presto, in parallel for others
+    if model_id == "presto":
+        # Create Presto model instance once
+        model_instance = config["class"](**config["params"])
 
-            # Prepare arguments for each process - pass config instead of model instance
-            process_args = [
-                (example, model_id, config, idx + i, args, bleu)
-                for idx, example in enumerate(batch)
-            ]
-
-            # Process batch in parallel
-            batch_results = pool.map(process_example, process_args)
-            valid_results = [r for r in batch_results if r is not None]
-            results.extend(valid_results)
-
-            # Update both progress bars
-            model_pbar.update(len(batch))
+        # Process Presto examples serially
+        for idx, example in enumerate(eval_data):
+            result = process_example(
+                (example, model_id, config, idx, args, model_instance)
+            )
+            if result is not None:
+                results.append(result)
+            model_pbar.update(1)
             if progress_bar:
-                progress_bar.update(len(batch))
+                progress_bar.update(1)
+    else:
+        # Process other models in parallel batches
+        with Pool(processes=args.parallel) as pool:
+            for i in range(0, len(eval_data), args.parallel):
+                batch = eval_data[i : i + args.parallel]
+                if args.dry_run:
+                    print(f"\nBatch {i//args.parallel + 1}:")
+                    print(f"Batch size: {len(batch)}")
+                    print(f"First batch item type: {type(batch[0])}")
+
+                # Prepare arguments for each process
+                process_args = [
+                    (example, model_id, config, idx + i, args, None)
+                    for idx, example in enumerate(batch)
+                ]
+
+                # Process batch in parallel
+                batch_results = pool.map(process_example, process_args)
+                valid_results = [r for r in batch_results if r is not None]
+                results.extend(valid_results)
+
+                # Update both progress bars
+                model_pbar.update(len(batch))
+                if progress_bar:
+                    progress_bar.update(len(batch))
 
     model_pbar.close()
     return results
@@ -222,12 +221,12 @@ def process_model(
 
 def main():
     # Parse arguments
-    parser = argparse.ArgumentParser(description="Run SVG generation benchmark")
+    parser = argparse.ArgumentParser(description="Generate SVGs using specified models")
     parser.add_argument(
         "--dry-run", action="store_true", help="Print model inputs without running"
     )
     parser.add_argument(
-        "--presto-model", type=str, help="Path to local Presto model checkpoints"
+        "--use-presto", action="store_true", help="Enable Presto model for benchmarking"
     )
     parser.add_argument(
         "--parallel", type=int, default=8, help="Number of parallel processes per model"
@@ -255,17 +254,20 @@ def main():
             "params": {"model": "gpt-4o", "temperature": 0, "max_tokens": 4096},
         }
 
-    # Add Presto model if path provided
-    if args.presto_model:
-        print(f"Loading Presto model from {args.presto_model}...")
+    # Add Presto model if enabled
+    if args.use_presto:
+        print("Loading Presto model...")
         model_configs["presto"] = {
             "class": PrestoModel,
-            "params": {"model_path": args.presto_model},
+            "params": {
+                "adapter_path": "Presto-Design/qwen2.5-vl-3b-poster-2m-variety-adapter-sft-resume1",
+                "use_flash_attention": False,
+            },
         }
 
     if not model_configs:
         print(
-            "Error: No models selected. Please enable at least one model using --use-claude, --use-gpt4, or --presto-model"
+            "Error: No models selected. Please enable at least one model using --use-claude, --use-gpt4, or --use-presto"
         )
         sys.exit(1)
 
@@ -303,9 +305,6 @@ def main():
         for model in model_configs:
             Path(f"output/{model}").mkdir(exist_ok=True)
 
-    # Load BLEU scorer if not in dry-run mode
-    bleu = None if args.dry_run else load("bleu")
-
     # Calculate total work to be done
     total_examples = len(eval_data) * len(model_configs)
 
@@ -320,9 +319,7 @@ def main():
 
     # Process all models sequentially (each model uses parallel processing internally)
     for model_id, config in model_configs.items():
-        model_results = process_model(
-            model_id, config, eval_data, args, bleu, main_pbar
-        )
+        model_results = process_model(model_id, config, eval_data, args, main_pbar)
         results.extend(model_results)
 
     main_pbar.close()
@@ -332,48 +329,32 @@ def main():
         return
 
     print("\nSaving results...")
-    # Split results into raw responses and scores
-    raw_results = [
-        {"record": r["record"], "model": r["model"], "response": r["raw_response"]}
-        for r in results
-    ]
-    scores = [
-        {k: v for k, v in r.items() if k not in ["raw_response"]} for r in results
-    ]
+    # Add timestamp to results
+    run_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-    # Save raw results
-    with open("output/raw.csv", "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["record", "model", "response"])
-        writer.writeheader()
-        writer.writerows(raw_results)
-
-    # Save detailed scores
-    scores_df = pd.DataFrame(scores)
-    scores_df.to_csv("output/scores.csv", index=False)
-
-    # Calculate and save mean scores per model
-    mean_scores = (
-        scores_df.groupby("model")
-        .agg(
-            {
-                "bleu": "mean",
-                "structural": "mean",
-                "pixel": "mean",
-                "record": "count",  # Count number of records per model
-            }
+    # Save raw results (append mode)
+    raw_file = "output/raw.csv"
+    file_exists = os.path.isfile(raw_file)
+    with open(raw_file, "a", newline="") as f:
+        writer = csv.DictWriter(
+            f, fieldnames=["record", "model", "response", "run_time"]
         )
-        .rename(columns={"record": "count"})
-        .reset_index()
-    )
+        if not file_exists:
+            writer.writeheader()
+        writer.writerows(
+            [
+                {
+                    "record": r["record"],
+                    "model": r["model"],
+                    "response": r["raw_response"],
+                    "run_time": run_time,
+                }
+                for r in results
+            ]
+        )
 
-    # Reorder columns to put count after model
-    mean_scores = mean_scores[["model", "count", "bleu", "structural", "pixel"]]
-    mean_scores.to_csv("output/mean_scores.csv", index=False)
-
-    print("\nBenchmark complete! Results saved in output/")
-    print(
-        "To generate visualizations, run: poetry run python -m svg_benchmark.visualize"
-    )
+    print("\nGeneration complete! Results saved to output/raw.csv")
+    print("To calculate scores, run: poetry run python -m svg_benchmark.score")
 
 
 if __name__ == "__main__":

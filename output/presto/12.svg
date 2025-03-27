@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+	<rect x="0" y="0" width="100%" height="100%" fill="#040506" />
+	<image x="0" y="0" width="100%" height="100%" href="placeholder" preserveAspectRatio="xMidYMid slice" opacity="0.6" alt="body of water under cloudy sky during sunset" mean-pixel="rgb(97,94,91)" />
+	<rect x="120.4" y="544.4" width="192" height="192" rx="27" ry="27" fill="#323a0f" />
+	<defs>
+		<mask id="content-mask-908888">
+			<rect x="0" y="0" width="164" height="164" rx="27" ry="27" fill="white" />
+		</mask>
+	</defs>
+	<image x="134.4" y="558.4" width="164" height="164" href="placeholder" alt="silhouette of trees during golden hour" mask="url(#content-mask-908888)" />
+</svg>

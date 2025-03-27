@@ -8,7 +8,7 @@
   <!-- Green gradient in the middle -->
   <linearGradient id="gradientMiddle" x1="0%" y1="0%" x2="100%" y2="0%">
     <stop offset="0%" stop-color="#1e5b1e" />
-    <stop offset="100%" stop-color="#0d3d0d" />
+    <stop offset="100%" stop-color="#0a3a0a" />
   </linearGradient>
   
   <!-- White/light gradient on the right -->

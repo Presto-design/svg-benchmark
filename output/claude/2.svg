@@ -19,9 +19,9 @@
   <!-- Top green gradient section -->
   <rect width="280" height="180" fill="url(#greenGradient)" />
   
-  <!-- Middle bright green line -->
-  <rect y="180" width="280" height="10" fill="#4CAF50" />
+  <!-- Bright green horizontal line -->
+  <rect y="180" width="280" height="5" fill="#4CAF50" />
   
   <!-- Bottom pink/magenta gradient section -->
-  <rect y="190" width="280" height="90" fill="url(#pinkGradient)" />
+  <rect y="185" width="280" height="95" fill="url(#pinkGradient)" />
 </svg>

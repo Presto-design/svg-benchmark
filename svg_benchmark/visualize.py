@@ -28,7 +28,13 @@ def create_comparison_plot(mean_scores_path: str, output_path: str):
     plt.xticks(x + width, mean_scores["model"])
     plt.legend()
 
+    # Save as SVG
     plt.savefig(output_path, format="svg")
+
+    # Also save as PNG
+    png_output_path = output_path.with_suffix(".png")
+    plt.savefig(png_output_path, format="png")
+
     plt.close()
 
 
@@ -59,10 +65,12 @@ def main():
         return
 
     print("Generating visualization...")
+    output_svg_path = output_dir / "comparison.svg"
     create_comparison_plot(
-        mean_scores_path=mean_scores_path, output_path=output_dir / "comparison.svg"
+        mean_scores_path=mean_scores_path, output_path=output_svg_path
     )
-    print(f"Visualization saved to {output_dir}/comparison.svg")
+    print(f"Visualization saved to {output_svg_path}")
+    print(f"Visualization also saved to {output_svg_path.with_suffix('.png')}")
 
 
 if __name__ == "__main__":

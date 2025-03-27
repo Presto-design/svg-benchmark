@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+	<rect x="0" y="0" width="100%" height="100%" fill="#0f191a" />
+	<image x="0" y="0" width="100%" height="100%" href="placeholder" preserveAspectRatio="xMidYMid slice" opacity="0.6" alt="an aerial view of the ocean and rocks" mean-pixel="rgb(114,105,97)" />
+	<circle cx="439.2" cy="538.9" r="244.5" fill="none" stroke="#0e0d0c" stroke-width="1" opacity="0.4" />
+</svg>

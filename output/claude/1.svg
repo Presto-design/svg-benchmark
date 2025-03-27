@@ -12,6 +12,6 @@
     </linearGradient>
   </defs>
   
-  <!-- Main rectangle with gradient fill -->
+  <!-- Rectangle with gradient fill -->
   <rect x="0" y="0" width="280" height="280" fill="url(#backgroundGradient)" />
 </svg>

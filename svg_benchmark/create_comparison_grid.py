@@ -5,7 +5,9 @@ from typing import List, Optional
 
 
 def create_comparison_grid(
-    indices: List[int] = [0, 5, 8, 9, 23], gap: int = 8, include_presto: bool = False
+    indices: List[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 23],
+    gap: int = 8,
+    include_presto: bool = False,
 ):
     # Load dataset for target images
     dataset = load_dataset("Presto-Design/svg_basic_benchmark_v0")
@@ -46,6 +48,8 @@ def create_comparison_grid(
             continue
 
         example = eval_data[data_idx]
+        target_img = example["image"]
+        target_size = (target_img.width, target_img.height)
         y = row_idx * (cell_height + label_height + gap)  # Add gap to y position
 
         for col, model in enumerate(models):
@@ -74,17 +78,20 @@ def create_comparison_grid(
 
             # Load and paste appropriate image
             if model == "target":
-                img = example["image"]
+                img = target_img
             else:
                 model_png = Path("output") / model / f"{data_idx}.png"
                 if model_png.exists():
                     img = Image.open(model_png)
+                    # Resize model output to match target dimensions
+                    if img.size != target_size:
+                        img = img.resize(target_size, Image.Resampling.LANCZOS)
                 else:
                     # Create a blank image with error message if file doesn't exist
-                    img = Image.new("RGB", (cell_width, cell_height), "white")
+                    img = Image.new("RGB", target_size, "white")
                     draw_error = ImageDraw.Draw(img)
                     draw_error.text(
-                        (cell_width // 2, cell_height // 2),
+                        (target_size[0] // 2, target_size[1] // 2),
                         "Image not found",
                         fill="red",
                         font=font,

@@ -2,13 +2,12 @@
   <defs>
     <linearGradient id="diagonalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#9932CC" /> <!-- Purple -->
-      <stop offset="25%" stop-color="#F5DEB3" /> <!-- Light yellow/beige -->
+      <stop offset="25%" stop-color="#FFD700" /> <!-- Gold/Yellow -->
       <stop offset="50%" stop-color="#00CED1" /> <!-- Turquoise -->
       <stop offset="75%" stop-color="#008080" /> <!-- Teal -->
-      <stop offset="100%" stop-color="#E0FFFF" /> <!-- Light cyan -->
+      <stop offset="100%" stop-color="#E0FFFF" /> <!-- Light Cyan -->
     </linearGradient>
   </defs>
   
-  <!-- Background rectangle with gradient -->
   <rect width="280" height="280" fill="url(#diagonalGradient)" />
 </svg>

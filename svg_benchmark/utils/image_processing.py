@@ -17,16 +17,19 @@ def render_svg(svg_text, output_path):
 
 
 def compute_pixel_similarity(img1_path, img2_path):
-    """Compute pixel-wise similarity between two images"""
-    try:
-        img1 = Image.open(img1_path).convert("RGB")
-        img2 = Image.open(img2_path).convert("RGB")
+    """Compute pixel-wise similarity between two images
 
-        # Resize images to match
-        width = max(img1.size[0], img2.size[0])
-        height = max(img1.size[1], img2.size[1])
-        img1 = img1.resize((width, height))
-        img2 = img2.resize((width, height))
+    Args:
+        img1_path: Path to the generated image
+        img2_path: Path to the target image
+    """
+    try:
+        img1 = Image.open(img1_path).convert("RGB")  # generated
+        img2 = Image.open(img2_path).convert("RGB")  # target
+
+        # Resize generated image to match target dimensions
+        if img1.size != img2.size:
+            img1 = img1.resize(img2.size, Image.Resampling.LANCZOS)
 
         # Convert to numpy arrays
         arr1 = np.array(img1)

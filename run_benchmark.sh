@@ -7,10 +7,9 @@ MODELS=""
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --presto-model)
-            PRESTO_MODEL="$2"
-            MODELS="$MODELS --presto-model $2"
-            shift 2
+        --use-presto)
+            MODELS="$MODELS --use-presto"
+            shift
             ;;
         --use-claude)
             MODELS="$MODELS --use-claude"
@@ -37,9 +36,17 @@ done
 
 # Check if at least one model is selected
 if [ -z "$MODELS" ]; then
-    echo "Error: No models selected. Please use at least one of: --use-claude, --use-gpt4, --presto-model <path>"
+    echo "Error: No models selected. Please use at least one of: --use-claude, --use-gpt4, --use-presto"
     exit 1
 fi
 
-# Run the benchmark
-poetry run python -m svg_benchmark.benchmark $MODELS --parallel $PARALLEL $DRY_RUN 
+# Run the generation step
+echo "Running generation..."
+RUN_TIME=$(date +%Y-%m-%d_%H-%M-%S)
+poetry run python -m svg_benchmark.generate $MODELS --parallel $PARALLEL $DRY_RUN
+
+# Run the scoring step if not a dry run
+if [ -z "$DRY_RUN" ]; then
+    echo -e "\nRunning scoring..."
+    poetry run python -m svg_benchmark.score --run-time "$RUN_TIME"
+fi 
