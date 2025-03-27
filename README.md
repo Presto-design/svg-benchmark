@@ -231,6 +231,10 @@ The benchmark was run on three leading models: Claude, GPT-4, and Presto. Here a
    - Presto achieved the highest at 0.745
    - GPT-4 (0.600) performed better than Claude (0.518) on exact pixel matching
 
+### Overall Assessment
+
+The results demonstrate a clear performance gap between Presto and current general-purpose LLMs (Claude and GPT-4) in SVG generation tasks. While all models showed competence in maintaining structural similarity, Presto's superior BLEU scores (0.899 vs ~0.35) indicate it produces significantly more accurate and maintainable SVG code. This advantage extends to both visual fidelity (0.965 SSIM) and technical precision (0.745 pixel similarity). The perfect success rate of Presto, compared to the 93.8% of other models, further establishes it as a more reliable solution for production SVG generation tasks where consistency and accuracy are crucial.
+
 ### Visual Comparisons
 
 Below are visual comparisons of the models' outputs:

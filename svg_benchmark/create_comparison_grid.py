@@ -5,7 +5,7 @@ from typing import List, Optional
 
 
 def create_comparison_grid(
-    indices: List[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 23],
+    indices: List[int] = [1, 27, 29, 4, 6, 9, 23],
     gap: int = 8,
     include_presto: bool = False,
 ):
