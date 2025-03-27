@@ -25,6 +25,12 @@ The [benchmark dataset](https://huggingface.co/datasets/Presto-Design/svg_basic_
 
 For more insights, read our article: ["Why LLMs are Bad at Creating SVGs and Graphic Design - And How to Make Them Good"](https://davidmack.medium.com/why-graphic-design-is-hard-for-large-language-models-64ee67c4309c)
 
+### About Presto's Vectorizer model
+
+You can freely try our vectorizing model here: https://huggingface.co/Presto-Design/llm_adapter_vectorizer_qwen7b
+
+It takes images and will output SVGs, with alt text on images suggesting a stock photography search.
+
 ## Contributing
 
 We welcome contributions to improve the benchmark! Here's how you can help:
