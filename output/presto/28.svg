@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
-	<rect x="0" y="0" width="100%" height="100%" fill="#048739" />
-	<text style="font-size: 107px; font-weight: SemiBold; font-family: Montserrat;" fill="#0ca654">
-		<tspan x="82" y="241" dominant-baseline="hanging">Saponify quanta</tspan>
-		<tspan x="270" y="367" dominant-baseline="hanging">dionysian</tspan>
-		<tspan x="249" y="494" dominant-baseline="hanging">baseboard</tspan>
-		<tspan x="287" y="615" dominant-baseline="hanging">crawford.</tspan>
+	<rect x="0" y="0" width="100%" height="100%" fill="#048735" />
+	<text style="font-size: 107px; font-weight: ExtraBold; font-family: Montserrat;" fill="#09b056">
+		<tspan x="81" y="242" dominant-baseline="hanging">Saponify quanta</tspan>
+		<tspan x="270" y="369" dominant-baseline="hanging">dionysian</tspan>
+		<tspan x="249" y="496" dominant-baseline="hanging">baseboard</tspan>
+		<tspan x="286" y="617" dominant-baseline="hanging">cranford.</tspan>
 	</text>
-	<text style="font-size: 44px; font-weight: normal; font-family: PT Sans;" fill="#2a2b2e">
-		<tspan x="115" y="741" dominant-baseline="hanging">"Flagpole chase readout, bottlecap absentminded wotan</tspan>
-		<tspan x="226" y="790" dominant-baseline="hanging">influent dominick embroider belligerent."</tspan>
+	<text style="font-size: 44px; font-weight: normal; font-family: PT Sans Narrow;" fill="#252525">
+		<tspan x="115" y="740" dominant-baseline="hanging">"Flagpole chase readout, bottlecap absentminded wotan</tspan>
+		<tspan x="226" y="788" dominant-baseline="hanging">influent dominick embroider belligerent."</tspan>
 	</text>
 </svg>

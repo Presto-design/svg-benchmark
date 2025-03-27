@@ -198,6 +198,46 @@ The benchmark evaluates models on three metrics:
 2. Structural similarity: Visual comparison of rendered images
 3. Pixel-wise similarity: Direct pixel comparison of rendered images
 
+## Benchmark Results
+
+The benchmark was run on three leading models: Claude, GPT-4, and Presto. Here are the results from testing on 32 examples:
+
+### Model Performance Summary
+
+| Model  | Success Rate | BLEU Score | Structural Similarity | Pixel Similarity |
+|--------|-------------|------------|---------------------|-----------------|
+| Presto | 100% (32/32) | 0.899 | 0.965 | 0.745 |
+| Claude | 93.8% (30/32) | 0.366 | 0.838 | 0.518 |
+| GPT-4  | 93.8% (30/32) | 0.351 | 0.843 | 0.600 |
+
+### Key Findings
+
+1. **Success Rate**: 
+   - Presto achieved a perfect success rate with no generation or rendering failures
+   - Both Claude and GPT-4 had 2 generation failures each (93.8% success rate)
+
+2. **Code Quality (BLEU)**:
+   - Presto significantly outperformed with a near-perfect BLEU score of 0.899
+   - Claude and GPT-4 showed similar performance around 0.35-0.36
+   - This indicates Presto generates much more accurate SVG code
+
+3. **Visual Accuracy**:
+   - All models achieved good structural similarity (SSIM)
+   - Presto led with 0.965, indicating near-identical visual output
+   - Claude and GPT-4 performed similarly (~0.84), showing good but visibly different results
+
+4. **Technical Precision**:
+   - Pixel-wise similarity scores were lower across all models
+   - Presto achieved the highest at 0.745
+   - GPT-4 (0.600) performed better than Claude (0.518) on exact pixel matching
+
+### Visual Comparisons
+
+Below are visual comparisons of the models' outputs:
+
+![Model Comparison](output/model_comparison.png)
+![Comparison Grid](output/comparison.png)
+
 ## Output Structure
 
 ```

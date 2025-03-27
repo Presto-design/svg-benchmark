@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
 	<defs>
 		<linearGradient id="bg_gradient" x1="100%" y1="0%" x2="0%" y2="100%">
-			<stop offset="0%" stop-color="#d9d6c0" stop-opacity="1" />
-			<stop offset="100%" stop-color="#cc74bd" stop-opacity="1" />
+			<stop offset="0%" stop-color="#d9d7c1" stop-opacity="1" />
+			<stop offset="100%" stop-color="#cc74be" stop-opacity="1" />
 		</linearGradient>
 	</defs>
 	<rect x="0" y="0" width="100%" height="100%" fill="url(#bg_gradient)" />
-	<text x="502.1" y="191.4" font-family="Georgia" font-size="107px" font-weight="Bold" fill="#3a6e67" text-anchor="middle" dominant-baseline="middle" transform="rotate(0 502.1 191.4)">Suff Encee Rank Aboard.</text>
+	<text x="562.2" y="190.5" font-family="Georgia" font-size="107px" font-weight="Bold" fill="#3a7068" text-anchor="middle" dominant-baseline="middle" transform="rotate(0 562.2 190.5)">Belfry Emcee Rank Aboard.</text>
 </svg>

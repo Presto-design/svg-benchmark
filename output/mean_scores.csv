@@ -1,4 +1,4 @@
 model,count,successful_count,render_failures,generation_failures,bleu,structural,pixel,bleu_successful,structural_successful,pixel_successful
 claude,32,30,0,2,0.343,0.785,0.486,0.366,0.838,0.518
 gpt4,32,30,0,2,0.329,0.79,0.563,0.351,0.843,0.6
-presto,32,25,7,0,0.652,0.748,0.434,0.835,0.958,0.556
+presto,32,32,0,0,0.899,0.965,0.745,0.899,0.965,0.745
